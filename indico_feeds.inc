@@ -150,7 +150,7 @@ class IndicoFetcher extends FeedsFetcher {
         $form['only_public'] = array(
             '#type' => 'checkbox',
             '#title' => t('Retrieve only public events'),
-            '#default_value' => isset($source_config['date_to']) ? $source_config['date_to'] : 'today',
+            '#default_value' => isset($source_config['only_public']) ? $source_config['only_public'] : false,
             '#description' => t("Only events visible to anonymous users are retrieved."),
             '#required' => false,
         );
