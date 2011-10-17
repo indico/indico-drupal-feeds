@@ -1,0 +1,774 @@
+<?php
+function indico_feeds_field_default_fields() {
+    $fields = array();
+
+    // Exported field: 'node-indico_event-body'
+    $fields['node-indico_event-body'] = array(
+        'field_config' => array(
+            'active' => '1',
+            'cardinality' => '1',
+            'deleted' => '0',
+            'entity_types' => array(
+                0 => 'node',
+            ),
+            'field_name' => 'body',
+            'foreign keys' => array(
+                'format' => array(
+                    'columns' => array(
+                        'format' => 'format',
+                    ),
+                    'table' => 'filter_format',
+                ),
+            ),
+            'indexes' => array(
+                'format' => array(
+                    0 => 'format',
+                ),
+            ),
+            'module' => 'text',
+            'settings' => array(),
+            'translatable' => '0',
+            'type' => 'text_with_summary',
+        ),
+        'field_instance' => array(
+            'bundle' => 'indico_event',
+            'default_value' => NULL,
+            'deleted' => '0',
+            'description' => 'This field contains the description of the event.',
+            'display' => array(
+                'default' => array(
+                    'label' => 'above',
+                    'module' => 'text',
+                    'settings' => array(),
+                    'type' => 'text_default',
+                    'weight' => '10',
+                ),
+                'teaser' => array(
+                    'label' => 'above',
+                    'settings' => array(),
+                    'type' => 'hidden',
+                    'weight' => 0,
+                ),
+            ),
+            'entity_type' => 'node',
+            'field_name' => 'body',
+            'label' => 'Description',
+            'required' => 0,
+            'settings' => array(
+                'display_summary' => 0,
+                'text_processing' => '1',
+                'user_register_form' => FALSE,
+            ),
+            'widget' => array(
+                'active' => 1,
+                'module' => 'text',
+                'settings' => array(
+                    'rows' => '20',
+                    'summary_rows' => 5,
+                ),
+                'type' => 'text_textarea_with_summary',
+                'weight' => '2',
+            ),
+        ),
+    );
+
+    // Exported field: 'node-indico_event-field_category'
+    $fields['node-indico_event-field_category'] = array(
+        'field_config' => array(
+            'active' => '1',
+            'cardinality' => '1',
+            'deleted' => '0',
+            'entity_types' => array(),
+            'field_name' => 'field_category',
+            'foreign keys' => array(
+                'format' => array(
+                    'columns' => array(
+                        'format' => 'format',
+                    ),
+                    'table' => 'filter_format',
+                ),
+            ),
+            'indexes' => array(
+                'format' => array(
+                    0 => 'format',
+                ),
+            ),
+            'module' => 'text',
+            'settings' => array(
+                'max_length' => '255',
+            ),
+            'translatable' => '0',
+            'type' => 'text',
+        ),
+        'field_instance' => array(
+            'bundle' => 'indico_event',
+            'default_value' => NULL,
+            'deleted' => '0',
+            'description' => '',
+            'display' => array(
+                'default' => array(
+                    'label' => 'inline',
+                    'module' => 'text',
+                    'settings' => array(),
+                    'type' => 'text_default',
+                    'weight' => '1',
+                ),
+                'teaser' => array(
+                    'label' => 'above',
+                    'settings' => array(),
+                    'type' => 'hidden',
+                    'weight' => 0,
+                ),
+            ),
+            'entity_type' => 'node',
+            'field_name' => 'field_category',
+            'label' => 'Category',
+            'required' => 1,
+            'settings' => array(
+                'text_processing' => '0',
+                'user_register_form' => FALSE,
+            ),
+            'widget' => array(
+                'active' => 1,
+                'module' => 'text',
+                'settings' => array(
+                    'size' => '60',
+                ),
+                'type' => 'text_textfield',
+                'weight' => '10',
+            ),
+        ),
+    );
+
+    // Exported field: 'node-indico_event-field_end_date'
+    $fields['node-indico_event-field_end_date'] = array(
+        'field_config' => array(
+            'active' => '1',
+            'cardinality' => '1',
+            'deleted' => '0',
+            'entity_types' => array(),
+            'field_name' => 'field_end_date',
+            'foreign keys' => array(
+                'format' => array(
+                    'columns' => array(
+                        'format' => 'format',
+                    ),
+                    'table' => 'filter_format',
+                ),
+            ),
+            'indexes' => array(
+                'format' => array(
+                    0 => 'format',
+                ),
+            ),
+            'module' => 'text',
+            'settings' => array(
+                'max_length' => '10',
+            ),
+            'translatable' => '0',
+            'type' => 'text',
+        ),
+        'field_instance' => array(
+            'bundle' => 'indico_event',
+            'default_value' => NULL,
+            'deleted' => '0',
+            'description' => 'This field contains the end date of the event in the YYYY-MM-DD format.',
+            'display' => array(
+                'default' => array(
+                    'label' => 'inline',
+                    'module' => 'text',
+                    'settings' => array(),
+                    'type' => 'text_default',
+                    'weight' => '4',
+                ),
+                'teaser' => array(
+                    'label' => 'above',
+                    'settings' => array(),
+                    'type' => 'hidden',
+                    'weight' => 0,
+                ),
+            ),
+            'entity_type' => 'node',
+            'field_name' => 'field_end_date',
+            'label' => 'End date',
+            'required' => 1,
+            'settings' => array(
+                'text_processing' => '0',
+                'user_register_form' => FALSE,
+            ),
+            'widget' => array(
+                'active' => 1,
+                'module' => 'text',
+                'settings' => array(
+                    'size' => '60',
+                ),
+                'type' => 'text_textfield',
+                'weight' => '5',
+            ),
+        ),
+    );
+
+    // Exported field: 'node-indico_event-field_end_time'
+    $fields['node-indico_event-field_end_time'] = array(
+        'field_config' => array(
+            'active' => '1',
+            'cardinality' => '1',
+            'deleted' => '0',
+            'entity_types' => array(),
+            'field_name' => 'field_end_time',
+            'foreign keys' => array(
+                'format' => array(
+                    'columns' => array(
+                        'format' => 'format',
+                    ),
+                    'table' => 'filter_format',
+                ),
+            ),
+            'indexes' => array(
+                'format' => array(
+                    0 => 'format',
+                ),
+            ),
+            'module' => 'text',
+            'settings' => array(
+                'max_length' => '5',
+            ),
+            'translatable' => '0',
+            'type' => 'text',
+        ),
+        'field_instance' => array(
+            'bundle' => 'indico_event',
+            'default_value' => NULL,
+            'deleted' => '0',
+            'description' => 'This field contains the UTC end time of the event in the HH:MM format.',
+            'display' => array(
+                'default' => array(
+                    'label' => 'inline',
+                    'module' => 'text',
+                    'settings' => array(),
+                    'type' => 'text_default',
+                    'weight' => '5',
+                ),
+                'teaser' => array(
+                    'label' => 'above',
+                    'settings' => array(),
+                    'type' => 'hidden',
+                    'weight' => 0,
+                ),
+            ),
+            'entity_type' => 'node',
+            'field_name' => 'field_end_time',
+            'label' => 'End time',
+            'required' => 1,
+            'settings' => array(
+                'text_processing' => '0',
+                'user_register_form' => FALSE,
+            ),
+            'widget' => array(
+                'active' => 1,
+                'module' => 'text',
+                'settings' => array(
+                    'size' => '60',
+                ),
+                'type' => 'text_textfield',
+                'weight' => '6',
+            ),
+        ),
+    );
+
+    // Exported field: 'node-indico_event-field_indico_link'
+    $fields['node-indico_event-field_indico_link'] = array(
+        'field_config' => array(
+            'active' => '1',
+            'cardinality' => '1',
+            'deleted' => '0',
+            'entity_types' => array(),
+            'field_name' => 'field_indico_link',
+            'foreign keys' => array(
+                'format' => array(
+                    'columns' => array(
+                        'format' => 'format',
+                    ),
+                    'table' => 'filter_format',
+                ),
+            ),
+            'indexes' => array(
+                'format' => array(
+                    0 => 'format',
+                ),
+            ),
+            'module' => 'text',
+            'settings' => array(
+                'max_length' => '255',
+            ),
+            'translatable' => '0',
+            'type' => 'text',
+        ),
+        'field_instance' => array(
+            'bundle' => 'indico_event',
+            'default_value' => NULL,
+            'deleted' => '0',
+            'description' => 'This field contains the link to the Indico event.',
+            'display' => array(
+                'default' => array(
+                    'label' => 'inline',
+                    'module' => 'text',
+                    'settings' => array(),
+                    'type' => 'text_default',
+                    'weight' => '9',
+                ),
+                'teaser' => array(
+                    'label' => 'above',
+                    'settings' => array(),
+                    'type' => 'hidden',
+                    'weight' => 0,
+                ),
+            ),
+            'entity_type' => 'node',
+            'field_name' => 'field_indico_link',
+            'label' => 'Indico link',
+            'required' => 1,
+            'settings' => array(
+                'text_processing' => '0',
+                'user_register_form' => FALSE,
+            ),
+            'widget' => array(
+                'active' => 1,
+                'module' => 'text',
+                'settings' => array(
+                    'size' => '60',
+                ),
+                'type' => 'text_textfield',
+                'weight' => '11',
+            ),
+        ),
+    );
+
+    // Exported field: 'node-indico_event-field_location'
+    $fields['node-indico_event-field_location'] = array(
+        'field_config' => array(
+            'active' => '1',
+            'cardinality' => '1',
+            'deleted' => '0',
+            'entity_types' => array(),
+            'field_name' => 'field_location',
+            'foreign keys' => array(
+                'format' => array(
+                    'columns' => array(
+                        'format' => 'format',
+                    ),
+                    'table' => 'filter_format',
+                ),
+            ),
+            'indexes' => array(
+                'format' => array(
+                    0 => 'format',
+                ),
+            ),
+            'module' => 'text',
+            'settings' => array(
+                'max_length' => '255',
+            ),
+            'translatable' => '0',
+            'type' => 'text',
+        ),
+        'field_instance' => array(
+            'bundle' => 'indico_event',
+            'default_value' => NULL,
+            'deleted' => '0',
+            'description' => 'This field contains the "location" of the event. It is usually "CERN".',
+            'display' => array(
+                'default' => array(
+                    'label' => 'inline',
+                    'module' => 'text',
+                    'settings' => array(),
+                    'type' => 'text_default',
+                    'weight' => '6',
+                ),
+                'teaser' => array(
+                    'label' => 'above',
+                    'settings' => array(),
+                    'type' => 'hidden',
+                    'weight' => 0,
+                ),
+            ),
+            'entity_type' => 'node',
+            'field_name' => 'field_location',
+            'label' => 'Location',
+            'required' => 0,
+            'settings' => array(
+                'text_processing' => '0',
+                'user_register_form' => FALSE,
+            ),
+            'widget' => array(
+                'active' => 1,
+                'module' => 'text',
+                'settings' => array(
+                    'size' => '60',
+                ),
+                'type' => 'text_textfield',
+                'weight' => '8',
+            ),
+        ),
+    );
+
+    // Exported field: 'node-indico_event-field_room'
+    $fields['node-indico_event-field_room'] = array(
+        'field_config' => array(
+            'active' => '1',
+            'cardinality' => '1',
+            'deleted' => '0',
+            'entity_types' => array(),
+            'field_name' => 'field_room',
+            'foreign keys' => array(
+                'format' => array(
+                    'columns' => array(
+                        'format' => 'format',
+                    ),
+                    'table' => 'filter_format',
+                ),
+            ),
+            'indexes' => array(
+                'format' => array(
+                    0 => 'format',
+                ),
+            ),
+            'module' => 'text',
+            'settings' => array(
+                'max_length' => '255',
+            ),
+            'translatable' => '0',
+            'type' => 'text',
+        ),
+        'field_instance' => array(
+            'bundle' => 'indico_event',
+            'default_value' => NULL,
+            'deleted' => '0',
+            'description' => 'This field contains the "Room" of the event.',
+            'display' => array(
+                'default' => array(
+                    'label' => 'inline',
+                    'module' => 'text',
+                    'settings' => array(),
+                    'type' => 'text_default',
+                    'weight' => '7',
+                ),
+                'teaser' => array(
+                    'label' => 'above',
+                    'settings' => array(),
+                    'type' => 'hidden',
+                    'weight' => 0,
+                ),
+            ),
+            'entity_type' => 'node',
+            'field_name' => 'field_room',
+            'label' => 'Room',
+            'required' => 0,
+            'settings' => array(
+                'text_processing' => '0',
+                'user_register_form' => FALSE,
+            ),
+            'widget' => array(
+                'active' => 1,
+                'module' => 'text',
+                'settings' => array(
+                    'size' => '60',
+                ),
+                'type' => 'text_textfield',
+                'weight' => '9',
+            ),
+        ),
+    );
+
+    // Exported field: 'node-indico_event-field_start_date'
+    $fields['node-indico_event-field_start_date'] = array(
+        'field_config' => array(
+            'active' => '1',
+            'cardinality' => '1',
+            'deleted' => '0',
+            'entity_types' => array(),
+            'field_name' => 'field_start_date',
+            'foreign keys' => array(
+                'format' => array(
+                    'columns' => array(
+                        'format' => 'format',
+                    ),
+                    'table' => 'filter_format',
+                ),
+            ),
+            'indexes' => array(
+                'format' => array(
+                    0 => 'format',
+                ),
+            ),
+            'module' => 'text',
+            'settings' => array(
+                'max_length' => '10',
+            ),
+            'translatable' => '0',
+            'type' => 'text',
+        ),
+        'field_instance' => array(
+            'bundle' => 'indico_event',
+            'default_value' => NULL,
+            'deleted' => '0',
+            'description' => 'This field contains the start date of the event in the YYYY-MM-DD format.',
+            'display' => array(
+                'default' => array(
+                    'label' => 'inline',
+                    'module' => 'text',
+                    'settings' => array(),
+                    'type' => 'text_default',
+                    'weight' => '2',
+                ),
+                'teaser' => array(
+                    'label' => 'above',
+                    'settings' => array(),
+                    'type' => 'hidden',
+                    'weight' => 0,
+                ),
+            ),
+            'entity_type' => 'node',
+            'field_name' => 'field_start_date',
+            'label' => 'Start date',
+            'required' => 1,
+            'settings' => array(
+                'text_processing' => '0',
+                'user_register_form' => FALSE,
+            ),
+            'widget' => array(
+                'active' => 1,
+                'module' => 'text',
+                'settings' => array(
+                    'size' => '60',
+                ),
+                'type' => 'text_textfield',
+                'weight' => '3',
+            ),
+        ),
+    );
+
+    // Exported field: 'node-indico_event-field_start_time'
+    $fields['node-indico_event-field_start_time'] = array(
+        'field_config' => array(
+            'active' => '1',
+            'cardinality' => '1',
+            'deleted' => '0',
+            'entity_types' => array(),
+            'field_name' => 'field_start_time',
+            'foreign keys' => array(
+                'format' => array(
+                    'columns' => array(
+                        'format' => 'format',
+                    ),
+                    'table' => 'filter_format',
+                ),
+            ),
+            'indexes' => array(
+                'format' => array(
+                    0 => 'format',
+                ),
+            ),
+            'module' => 'text',
+            'settings' => array(
+                'max_length' => '5',
+            ),
+            'translatable' => '0',
+            'type' => 'text',
+        ),
+        'field_instance' => array(
+            'bundle' => 'indico_event',
+            'default_value' => NULL,
+            'deleted' => '0',
+            'description' => 'This field contains the UTC start time of the event in the HH:MM format.',
+            'display' => array(
+                'default' => array(
+                    'label' => 'inline',
+                    'module' => 'text',
+                    'settings' => array(),
+                    'type' => 'text_default',
+                    'weight' => '3',
+                ),
+                'teaser' => array(
+                    'label' => 'above',
+                    'settings' => array(),
+                    'type' => 'hidden',
+                    'weight' => 0,
+                ),
+            ),
+            'entity_type' => 'node',
+            'field_name' => 'field_start_time',
+            'label' => 'Start time',
+            'required' => 1,
+            'settings' => array(
+                'text_processing' => '0',
+                'user_register_form' => FALSE,
+            ),
+            'widget' => array(
+                'active' => 1,
+                'module' => 'text',
+                'settings' => array(
+                    'size' => '60',
+                ),
+                'type' => 'text_textfield',
+                'weight' => '4',
+            ),
+        ),
+    );
+
+    // Exported field: 'node-indico_event-field_timezone'
+    $fields['node-indico_event-field_timezone'] = array(
+        'field_config' => array(
+            'active' => '1',
+            'cardinality' => '1',
+            'deleted' => '0',
+            'entity_types' => array(),
+            'field_name' => 'field_timezone',
+            'foreign keys' => array(
+                'format' => array(
+                    'columns' => array(
+                        'format' => 'format',
+                    ),
+                    'table' => 'filter_format',
+                ),
+            ),
+            'indexes' => array(
+                'format' => array(
+                    0 => 'format',
+                ),
+            ),
+            'module' => 'text',
+            'settings' => array(
+                'max_length' => '64',
+            ),
+            'translatable' => '0',
+            'type' => 'text',
+        ),
+        'field_instance' => array(
+            'bundle' => 'indico_event',
+            'default_value' => NULL,
+            'deleted' => '0',
+            'description' => 'This field contains the selected timezone for the event, e.g. "UTC" or "Europe/Zurich"',
+            'display' => array(
+                'default' => array(
+                    'label' => 'inline',
+                    'module' => 'text',
+                    'settings' => array(),
+                    'type' => 'text_default',
+                    'weight' => '8',
+                ),
+                'teaser' => array(
+                    'label' => 'above',
+                    'settings' => array(),
+                    'type' => 'hidden',
+                    'weight' => 0,
+                ),
+            ),
+            'entity_type' => 'node',
+            'field_name' => 'field_timezone',
+            'label' => 'Timezone',
+            'required' => 1,
+            'settings' => array(
+                'text_processing' => '0',
+                'user_register_form' => FALSE,
+            ),
+            'widget' => array(
+                'active' => 1,
+                'module' => 'text',
+                'settings' => array(
+                    'size' => '60',
+                ),
+                'type' => 'text_textfield',
+                'weight' => '7',
+            ),
+        ),
+    );
+
+    // Exported field: 'node-indico_event-field_type'
+    $fields['node-indico_event-field_type'] = array(
+        'field_config' => array(
+            'active' => '1',
+            'cardinality' => '1',
+            'deleted' => '0',
+            'entity_types' => array(),
+            'field_name' => 'field_type',
+            'foreign keys' => array(),
+            'indexes' => array(
+                'value' => array(
+                    0 => 'value',
+                ),
+            ),
+            'module' => 'list',
+            'settings' => array(
+                'allowed_values' => array(
+                    'simple_event' => 'Lecture',
+                    'meeting' => 'Meeting',
+                    'conference' => 'Conference',
+                ),
+                'allowed_values_function' => '',
+            ),
+            'translatable' => '0',
+            'type' => 'list_text',
+        ),
+        'field_instance' => array(
+            'bundle' => 'indico_event',
+            'default_value' => NULL,
+            'deleted' => '0',
+            'description' => '',
+            'display' => array(
+                'default' => array(
+                    'label' => 'inline',
+                    'module' => 'list',
+                    'settings' => array(),
+                    'type' => 'list_default',
+                    'weight' => '0',
+                ),
+                'teaser' => array(
+                    'label' => 'above',
+                    'settings' => array(),
+                    'type' => 'hidden',
+                    'weight' => 0,
+                ),
+            ),
+            'entity_type' => 'node',
+            'field_name' => 'field_type',
+            'label' => 'Type',
+            'required' => 1,
+            'settings' => array(
+                'user_register_form' => FALSE,
+            ),
+            'widget' => array(
+                'active' => 1,
+                'module' => 'options',
+                'settings' => array(),
+                'type' => 'options_select',
+                'weight' => '1',
+            ),
+        ),
+    );
+
+    // Translatables
+    // Included for use with string extractors like potx.
+    t('Category');
+    t('Description');
+    t('End date');
+    t('End time');
+    t('Indico link');
+    t('Location');
+    t('Room');
+    t('Start date');
+    t('Start time');
+    t('This field contains the "Room" of the event.');
+    t('This field contains the "location" of the event. It is usually "CERN".');
+    t('This field contains the UTC end time of the event in the HH:MM format.');
+    t('This field contains the UTC start time of the event in the HH:MM format.');
+    t('This field contains the description of the event.');
+    t('This field contains the end date of the event in the YYYY-MM-DD format.');
+    t('This field contains the link to the Indico event.');
+    t('This field contains the selected timezone for the event, e.g. "UTC" or "Europe/Zurich"');
+    t('This field contains the start date of the event in the YYYY-MM-DD format.');
+    t('Timezone');
+    t('Type');
+
+    return $fields;
+}
