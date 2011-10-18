@@ -113,6 +113,16 @@ class IndicoFetcher extends FeedsFetcher {
         }
     }
 
+    public function sourceDefaults() {
+        return array(
+            'categories' => '',
+            'date_from' => 'today',
+            'date_to' => 'today',
+            'room' => '',
+            'only_public' => false,
+        );
+    }
+
     public function sourceForm($source_config) {
         $form = array();
         $form['categories'] = array(
@@ -126,7 +136,7 @@ class IndicoFetcher extends FeedsFetcher {
         $form['date_from'] = array(
             '#type' => 'textfield',
             '#title' => t('Start date'),
-            '#default_value' => isset($source_config['date_from']) ? $source_config['date_from'] : 'today',
+            '#default_value' => isset($source_config['date_from']) ? $source_config['date_from'] : '',
             '#description' => t("The earliest event date in YYYY-MM-DD form. You can also use '+-Xd' to specify an offset based on the current date (e.g. '-2d' for events since 2 days ago). 'today', 'yesterday' and 'tomorrow' are also accepted."),
             '#required' => false,
         );
@@ -134,7 +144,7 @@ class IndicoFetcher extends FeedsFetcher {
         $form['date_to'] = array(
             '#type' => 'textfield',
             '#title' => t('End date'),
-            '#default_value' => isset($source_config['date_to']) ? $source_config['date_to'] : 'today',
+            '#default_value' => isset($source_config['date_to']) ? $source_config['date_to'] : '',
             '#description' => t("The latest event date in YYYY-MM-DD form. You can also use '+Xd' to specify an offset based on the start date. 'today' and 'tomorrow' are also accepted."),
             '#required' => false,
         );
