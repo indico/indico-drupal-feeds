@@ -47,3 +47,22 @@ function indico_feeds_feeds_plugins() {
     );
     return $info;
 }
+
+function indico_feeds_date_format_types() {
+    return array(
+        'indico_feeds_event_time' => t('Short event time'),
+    );
+}
+
+function indico_feeds_date_formats() {
+    return array(
+        array(
+            'type' => 'indico_feeds_event_time',
+            'format' => 'H:i',
+        ),
+        array(
+            'type' => 'indico_feeds_event_time',
+            'format' => 'g:ia',
+        ),
+    );
+}

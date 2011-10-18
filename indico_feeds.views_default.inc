@@ -77,14 +77,14 @@ function indico_feeds_views_default_views() {
     $handler->display->display_options['fields']['title']['empty_zero'] = 0;
     $handler->display->display_options['fields']['title']['hide_alter_empty'] = 0;
     $handler->display->display_options['fields']['title']['link_to_node'] = 0;
-    /* Sort criterion: Content: Start date (field_start_date) */
-    $handler->display->display_options['sorts']['field_start_date_value']['id'] = 'field_start_date_value';
-    $handler->display->display_options['sorts']['field_start_date_value']['table'] = 'field_data_field_start_date';
-    $handler->display->display_options['sorts']['field_start_date_value']['field'] = 'field_start_date_value';
-    /* Sort criterion: Content: Start time (field_start_time) */
-    $handler->display->display_options['sorts']['field_start_time_value']['id'] = 'field_start_time_value';
-    $handler->display->display_options['sorts']['field_start_time_value']['table'] = 'field_data_field_start_time';
-    $handler->display->display_options['sorts']['field_start_time_value']['field'] = 'field_start_time_value';
+    /* Sort criterion: Content: Date -  start date (field_date) */
+    $handler->display->display_options['sorts']['field_date_value']['id'] = 'field_date_value';
+    $handler->display->display_options['sorts']['field_date_value']['table'] = 'field_data_field_date';
+    $handler->display->display_options['sorts']['field_date_value']['field'] = 'field_date_value';
+    /* Sort criterion: Content: Date - end date (field_date:value2) */
+    $handler->display->display_options['sorts']['field_date_value2']['id'] = 'field_date_value2';
+    $handler->display->display_options['sorts']['field_date_value2']['table'] = 'field_data_field_date';
+    $handler->display->display_options['sorts']['field_date_value2']['field'] = 'field_date_value2';
     /* Filter criterion: Content: Type */
     $handler->display->display_options['filters']['type']['id'] = 'type';
     $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -124,7 +124,7 @@ function indico_feeds_views_default_views() {
     $handler->display->display_options['style_plugin'] = 'default';
     $handler->display->display_options['row_plugin'] = 'fields';
     $handler->display->display_options['row_options']['inline'] = array(
-        'field_start_time' => 'field_start_time',
+        'field_date' => 'field_date',
         'field_location' => 'field_location',
         'field_room' => 'field_room',
     );
@@ -205,29 +205,37 @@ function indico_feeds_views_default_views() {
     $handler->display->display_options['fields']['title']['empty_zero'] = 0;
     $handler->display->display_options['fields']['title']['hide_alter_empty'] = 0;
     $handler->display->display_options['fields']['title']['link_to_node'] = 0;
-    /* Field: Content: Start time */
-    $handler->display->display_options['fields']['field_start_time']['id'] = 'field_start_time';
-    $handler->display->display_options['fields']['field_start_time']['table'] = 'field_data_field_start_time';
-    $handler->display->display_options['fields']['field_start_time']['field'] = 'field_start_time';
-    $handler->display->display_options['fields']['field_start_time']['label'] = '';
-    $handler->display->display_options['fields']['field_start_time']['alter']['alter_text'] = 0;
-    $handler->display->display_options['fields']['field_start_time']['alter']['make_link'] = 0;
-    $handler->display->display_options['fields']['field_start_time']['alter']['absolute'] = 0;
-    $handler->display->display_options['fields']['field_start_time']['alter']['external'] = 0;
-    $handler->display->display_options['fields']['field_start_time']['alter']['replace_spaces'] = 0;
-    $handler->display->display_options['fields']['field_start_time']['alter']['trim_whitespace'] = 0;
-    $handler->display->display_options['fields']['field_start_time']['alter']['nl2br'] = 0;
-    $handler->display->display_options['fields']['field_start_time']['alter']['word_boundary'] = 1;
-    $handler->display->display_options['fields']['field_start_time']['alter']['ellipsis'] = 1;
-    $handler->display->display_options['fields']['field_start_time']['alter']['strip_tags'] = 0;
-    $handler->display->display_options['fields']['field_start_time']['alter']['trim'] = 0;
-    $handler->display->display_options['fields']['field_start_time']['alter']['html'] = 0;
-    $handler->display->display_options['fields']['field_start_time']['element_label_colon'] = FALSE;
-    $handler->display->display_options['fields']['field_start_time']['element_default_classes'] = 1;
-    $handler->display->display_options['fields']['field_start_time']['hide_empty'] = 0;
-    $handler->display->display_options['fields']['field_start_time']['empty_zero'] = 0;
-    $handler->display->display_options['fields']['field_start_time']['hide_alter_empty'] = 0;
-    $handler->display->display_options['fields']['field_start_time']['field_api_classes'] = 0;
+    /* Field: Content: Date */
+    $handler->display->display_options['fields']['field_date']['id'] = 'field_date';
+    $handler->display->display_options['fields']['field_date']['table'] = 'field_data_field_date';
+    $handler->display->display_options['fields']['field_date']['field'] = 'field_date';
+    $handler->display->display_options['fields']['field_date']['label'] = '';
+    $handler->display->display_options['fields']['field_date']['alter']['alter_text'] = 0;
+    $handler->display->display_options['fields']['field_date']['alter']['make_link'] = 0;
+    $handler->display->display_options['fields']['field_date']['alter']['absolute'] = 0;
+    $handler->display->display_options['fields']['field_date']['alter']['external'] = 0;
+    $handler->display->display_options['fields']['field_date']['alter']['replace_spaces'] = 0;
+    $handler->display->display_options['fields']['field_date']['alter']['trim_whitespace'] = 0;
+    $handler->display->display_options['fields']['field_date']['alter']['nl2br'] = 0;
+    $handler->display->display_options['fields']['field_date']['alter']['word_boundary'] = 1;
+    $handler->display->display_options['fields']['field_date']['alter']['ellipsis'] = 1;
+    $handler->display->display_options['fields']['field_date']['alter']['strip_tags'] = 0;
+    $handler->display->display_options['fields']['field_date']['alter']['trim'] = 0;
+    $handler->display->display_options['fields']['field_date']['alter']['html'] = 0;
+    $handler->display->display_options['fields']['field_date']['element_label_colon'] = FALSE;
+    $handler->display->display_options['fields']['field_date']['element_default_classes'] = 1;
+    $handler->display->display_options['fields']['field_date']['hide_empty'] = 0;
+    $handler->display->display_options['fields']['field_date']['empty_zero'] = 0;
+    $handler->display->display_options['fields']['field_date']['hide_alter_empty'] = 0;
+    $handler->display->display_options['fields']['field_date']['settings'] = array(
+        'format_type' => 'indico_feeds_event_time',
+        'fromto' => 'value',
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_to' => '',
+        'show_repeat_rule' => 'show',
+    );
+    $handler->display->display_options['fields']['field_date']['field_api_classes'] = 0;
     /* Field: Content: Location */
     $handler->display->display_options['fields']['field_location']['id'] = 'field_location';
     $handler->display->display_options['fields']['field_location']['table'] = 'field_data_field_location';
@@ -274,14 +282,10 @@ function indico_feeds_views_default_views() {
     $handler->display->display_options['fields']['field_room']['empty_zero'] = 0;
     $handler->display->display_options['fields']['field_room']['hide_alter_empty'] = 0;
     $handler->display->display_options['fields']['field_room']['field_api_classes'] = 0;
-    /* Sort criterion: Content: Start date (field_start_date) */
-    $handler->display->display_options['sorts']['field_start_date_value']['id'] = 'field_start_date_value';
-    $handler->display->display_options['sorts']['field_start_date_value']['table'] = 'field_data_field_start_date';
-    $handler->display->display_options['sorts']['field_start_date_value']['field'] = 'field_start_date_value';
-    /* Sort criterion: Content: Start time (field_start_time) */
-    $handler->display->display_options['sorts']['field_start_time_value']['id'] = 'field_start_time_value';
-    $handler->display->display_options['sorts']['field_start_time_value']['table'] = 'field_data_field_start_time';
-    $handler->display->display_options['sorts']['field_start_time_value']['field'] = 'field_start_time_value';
+    /* Sort criterion: Content: Date -  start date (field_date) */
+    $handler->display->display_options['sorts']['field_date_value']['id'] = 'field_date_value';
+    $handler->display->display_options['sorts']['field_date_value']['table'] = 'field_data_field_date';
+    $handler->display->display_options['sorts']['field_date_value']['field'] = 'field_date_value';
     /* Filter criterion: Content: Type */
     $handler->display->display_options['filters']['type']['id'] = 'type';
     $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -320,53 +324,46 @@ function indico_feeds_views_default_views() {
     $handler->display->display_options['style_plugin'] = 'table';
     $handler->display->display_options['style_options']['columns'] = array(
         'title' => 'title',
-        'field_type' => 'field_type',
+        'field_date' => 'field_date',
+        'field_date_1' => 'field_date_1',
         'field_room' => 'field_room',
-        'field_start_date' => 'field_start_date',
-        'field_start_time' => 'field_start_time',
-        'field_end_date' => 'field_end_date',
-        'field_end_time' => 'field_end_time',
+        'field_category' => 'field_category',
+        'field_type' => 'field_type',
     );
-    $handler->display->display_options['style_options']['default'] = 'field_start_date';
+    $handler->display->display_options['style_options']['default'] = 'field_date';
     $handler->display->display_options['style_options']['info'] = array(
         'title' => array(
-            'sortable' => 0,
+            'sortable' => 1,
             'default_sort_order' => 'asc',
             'align' => '',
             'separator' => '',
         ),
-        'field_type' => array(
-            'sortable' => 0,
+        'field_date' => array(
+            'sortable' => 1,
+            'default_sort_order' => 'asc',
+            'align' => '',
+            'separator' => '',
+        ),
+        'field_date_1' => array(
+            'sortable' => 1,
             'default_sort_order' => 'asc',
             'align' => '',
             'separator' => '',
         ),
         'field_room' => array(
-            'sortable' => 0,
+            'sortable' => 1,
             'default_sort_order' => 'asc',
             'align' => '',
             'separator' => '',
         ),
-        'field_start_date' => array(
-            'sortable' => 0,
+        'field_category' => array(
+            'sortable' => 1,
             'default_sort_order' => 'asc',
             'align' => '',
             'separator' => '',
         ),
-        'field_start_time' => array(
-            'sortable' => 0,
-            'default_sort_order' => 'asc',
-            'align' => '',
-            'separator' => '',
-        ),
-        'field_end_date' => array(
-            'sortable' => 0,
-            'default_sort_order' => 'asc',
-            'align' => '',
-            'separator' => '',
-        ),
-        'field_end_time' => array(
-            'sortable' => 0,
+        'field_type' => array(
+            'sortable' => 1,
             'default_sort_order' => 'asc',
             'align' => '',
             'separator' => '',
@@ -374,7 +371,6 @@ function indico_feeds_views_default_views() {
     );
     $handler->display->display_options['style_options']['override'] = 1;
     $handler->display->display_options['style_options']['sticky'] = 1;
-    $handler->display->display_options['style_options']['order'] = 'desc';
     $handler->display->display_options['style_options']['empty_table'] = 0;
     /* No results behavior: Global: Text area */
     $handler->display->display_options['empty']['text']['id'] = 'text';
@@ -411,94 +407,68 @@ function indico_feeds_views_default_views() {
     $handler->display->display_options['fields']['title']['empty_zero'] = 0;
     $handler->display->display_options['fields']['title']['hide_alter_empty'] = 0;
     $handler->display->display_options['fields']['title']['link_to_node'] = 1;
-    /* Field: Content: Start date */
-    $handler->display->display_options['fields']['field_start_date']['id'] = 'field_start_date';
-    $handler->display->display_options['fields']['field_start_date']['table'] = 'field_data_field_start_date';
-    $handler->display->display_options['fields']['field_start_date']['field'] = 'field_start_date';
-    $handler->display->display_options['fields']['field_start_date']['alter']['alter_text'] = 0;
-    $handler->display->display_options['fields']['field_start_date']['alter']['make_link'] = 0;
-    $handler->display->display_options['fields']['field_start_date']['alter']['absolute'] = 0;
-    $handler->display->display_options['fields']['field_start_date']['alter']['external'] = 0;
-    $handler->display->display_options['fields']['field_start_date']['alter']['replace_spaces'] = 0;
-    $handler->display->display_options['fields']['field_start_date']['alter']['trim_whitespace'] = 0;
-    $handler->display->display_options['fields']['field_start_date']['alter']['nl2br'] = 0;
-    $handler->display->display_options['fields']['field_start_date']['alter']['word_boundary'] = 1;
-    $handler->display->display_options['fields']['field_start_date']['alter']['ellipsis'] = 1;
-    $handler->display->display_options['fields']['field_start_date']['alter']['strip_tags'] = 0;
-    $handler->display->display_options['fields']['field_start_date']['alter']['trim'] = 0;
-    $handler->display->display_options['fields']['field_start_date']['alter']['html'] = 0;
-    $handler->display->display_options['fields']['field_start_date']['element_label_colon'] = 0;
-    $handler->display->display_options['fields']['field_start_date']['element_default_classes'] = 1;
-    $handler->display->display_options['fields']['field_start_date']['hide_empty'] = 0;
-    $handler->display->display_options['fields']['field_start_date']['empty_zero'] = 0;
-    $handler->display->display_options['fields']['field_start_date']['hide_alter_empty'] = 0;
-    $handler->display->display_options['fields']['field_start_date']['field_api_classes'] = 0;
-    /* Field: Content: Start time */
-    $handler->display->display_options['fields']['field_start_time']['id'] = 'field_start_time';
-    $handler->display->display_options['fields']['field_start_time']['table'] = 'field_data_field_start_time';
-    $handler->display->display_options['fields']['field_start_time']['field'] = 'field_start_time';
-    $handler->display->display_options['fields']['field_start_time']['alter']['alter_text'] = 0;
-    $handler->display->display_options['fields']['field_start_time']['alter']['make_link'] = 0;
-    $handler->display->display_options['fields']['field_start_time']['alter']['absolute'] = 0;
-    $handler->display->display_options['fields']['field_start_time']['alter']['external'] = 0;
-    $handler->display->display_options['fields']['field_start_time']['alter']['replace_spaces'] = 0;
-    $handler->display->display_options['fields']['field_start_time']['alter']['trim_whitespace'] = 0;
-    $handler->display->display_options['fields']['field_start_time']['alter']['nl2br'] = 0;
-    $handler->display->display_options['fields']['field_start_time']['alter']['word_boundary'] = 1;
-    $handler->display->display_options['fields']['field_start_time']['alter']['ellipsis'] = 1;
-    $handler->display->display_options['fields']['field_start_time']['alter']['strip_tags'] = 0;
-    $handler->display->display_options['fields']['field_start_time']['alter']['trim'] = 0;
-    $handler->display->display_options['fields']['field_start_time']['alter']['html'] = 0;
-    $handler->display->display_options['fields']['field_start_time']['element_label_colon'] = 0;
-    $handler->display->display_options['fields']['field_start_time']['element_default_classes'] = 1;
-    $handler->display->display_options['fields']['field_start_time']['hide_empty'] = 0;
-    $handler->display->display_options['fields']['field_start_time']['empty_zero'] = 0;
-    $handler->display->display_options['fields']['field_start_time']['hide_alter_empty'] = 0;
-    $handler->display->display_options['fields']['field_start_time']['field_api_classes'] = 0;
-    /* Field: Content: End date */
-    $handler->display->display_options['fields']['field_end_date']['id'] = 'field_end_date';
-    $handler->display->display_options['fields']['field_end_date']['table'] = 'field_data_field_end_date';
-    $handler->display->display_options['fields']['field_end_date']['field'] = 'field_end_date';
-    $handler->display->display_options['fields']['field_end_date']['alter']['alter_text'] = 0;
-    $handler->display->display_options['fields']['field_end_date']['alter']['make_link'] = 0;
-    $handler->display->display_options['fields']['field_end_date']['alter']['absolute'] = 0;
-    $handler->display->display_options['fields']['field_end_date']['alter']['external'] = 0;
-    $handler->display->display_options['fields']['field_end_date']['alter']['replace_spaces'] = 0;
-    $handler->display->display_options['fields']['field_end_date']['alter']['trim_whitespace'] = 0;
-    $handler->display->display_options['fields']['field_end_date']['alter']['nl2br'] = 0;
-    $handler->display->display_options['fields']['field_end_date']['alter']['word_boundary'] = 1;
-    $handler->display->display_options['fields']['field_end_date']['alter']['ellipsis'] = 1;
-    $handler->display->display_options['fields']['field_end_date']['alter']['strip_tags'] = 0;
-    $handler->display->display_options['fields']['field_end_date']['alter']['trim'] = 0;
-    $handler->display->display_options['fields']['field_end_date']['alter']['html'] = 0;
-    $handler->display->display_options['fields']['field_end_date']['element_label_colon'] = 0;
-    $handler->display->display_options['fields']['field_end_date']['element_default_classes'] = 1;
-    $handler->display->display_options['fields']['field_end_date']['hide_empty'] = 0;
-    $handler->display->display_options['fields']['field_end_date']['empty_zero'] = 0;
-    $handler->display->display_options['fields']['field_end_date']['hide_alter_empty'] = 0;
-    $handler->display->display_options['fields']['field_end_date']['field_api_classes'] = 0;
-    /* Field: Content: End time */
-    $handler->display->display_options['fields']['field_end_time']['id'] = 'field_end_time';
-    $handler->display->display_options['fields']['field_end_time']['table'] = 'field_data_field_end_time';
-    $handler->display->display_options['fields']['field_end_time']['field'] = 'field_end_time';
-    $handler->display->display_options['fields']['field_end_time']['alter']['alter_text'] = 0;
-    $handler->display->display_options['fields']['field_end_time']['alter']['make_link'] = 0;
-    $handler->display->display_options['fields']['field_end_time']['alter']['absolute'] = 0;
-    $handler->display->display_options['fields']['field_end_time']['alter']['external'] = 0;
-    $handler->display->display_options['fields']['field_end_time']['alter']['replace_spaces'] = 0;
-    $handler->display->display_options['fields']['field_end_time']['alter']['trim_whitespace'] = 0;
-    $handler->display->display_options['fields']['field_end_time']['alter']['nl2br'] = 0;
-    $handler->display->display_options['fields']['field_end_time']['alter']['word_boundary'] = 1;
-    $handler->display->display_options['fields']['field_end_time']['alter']['ellipsis'] = 1;
-    $handler->display->display_options['fields']['field_end_time']['alter']['strip_tags'] = 0;
-    $handler->display->display_options['fields']['field_end_time']['alter']['trim'] = 0;
-    $handler->display->display_options['fields']['field_end_time']['alter']['html'] = 0;
-    $handler->display->display_options['fields']['field_end_time']['element_label_colon'] = 0;
-    $handler->display->display_options['fields']['field_end_time']['element_default_classes'] = 1;
-    $handler->display->display_options['fields']['field_end_time']['hide_empty'] = 0;
-    $handler->display->display_options['fields']['field_end_time']['empty_zero'] = 0;
-    $handler->display->display_options['fields']['field_end_time']['hide_alter_empty'] = 0;
-    $handler->display->display_options['fields']['field_end_time']['field_api_classes'] = 0;
+    /* Field: Content: Date */
+    $handler->display->display_options['fields']['field_date']['id'] = 'field_date';
+    $handler->display->display_options['fields']['field_date']['table'] = 'field_data_field_date';
+    $handler->display->display_options['fields']['field_date']['field'] = 'field_date';
+    $handler->display->display_options['fields']['field_date']['label'] = 'Start date/time';
+    $handler->display->display_options['fields']['field_date']['alter']['alter_text'] = 0;
+    $handler->display->display_options['fields']['field_date']['alter']['make_link'] = 0;
+    $handler->display->display_options['fields']['field_date']['alter']['absolute'] = 0;
+    $handler->display->display_options['fields']['field_date']['alter']['external'] = 0;
+    $handler->display->display_options['fields']['field_date']['alter']['replace_spaces'] = 0;
+    $handler->display->display_options['fields']['field_date']['alter']['trim_whitespace'] = 0;
+    $handler->display->display_options['fields']['field_date']['alter']['nl2br'] = 0;
+    $handler->display->display_options['fields']['field_date']['alter']['word_boundary'] = 1;
+    $handler->display->display_options['fields']['field_date']['alter']['ellipsis'] = 1;
+    $handler->display->display_options['fields']['field_date']['alter']['strip_tags'] = 0;
+    $handler->display->display_options['fields']['field_date']['alter']['trim'] = 0;
+    $handler->display->display_options['fields']['field_date']['alter']['html'] = 0;
+    $handler->display->display_options['fields']['field_date']['element_label_colon'] = 0;
+    $handler->display->display_options['fields']['field_date']['element_default_classes'] = 1;
+    $handler->display->display_options['fields']['field_date']['hide_empty'] = 0;
+    $handler->display->display_options['fields']['field_date']['empty_zero'] = 0;
+    $handler->display->display_options['fields']['field_date']['hide_alter_empty'] = 0;
+    $handler->display->display_options['fields']['field_date']['settings'] = array(
+        'format_type' => 'short',
+        'fromto' => 'value',
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_to' => '',
+        'show_repeat_rule' => 'show',
+    );
+    $handler->display->display_options['fields']['field_date']['field_api_classes'] = 0;
+    /* Field: Content: Date */
+    $handler->display->display_options['fields']['field_date_1']['id'] = 'field_date_1';
+    $handler->display->display_options['fields']['field_date_1']['table'] = 'field_data_field_date';
+    $handler->display->display_options['fields']['field_date_1']['field'] = 'field_date';
+    $handler->display->display_options['fields']['field_date_1']['label'] = 'End date/time';
+    $handler->display->display_options['fields']['field_date_1']['alter']['alter_text'] = 0;
+    $handler->display->display_options['fields']['field_date_1']['alter']['make_link'] = 0;
+    $handler->display->display_options['fields']['field_date_1']['alter']['absolute'] = 0;
+    $handler->display->display_options['fields']['field_date_1']['alter']['external'] = 0;
+    $handler->display->display_options['fields']['field_date_1']['alter']['replace_spaces'] = 0;
+    $handler->display->display_options['fields']['field_date_1']['alter']['trim_whitespace'] = 0;
+    $handler->display->display_options['fields']['field_date_1']['alter']['nl2br'] = 0;
+    $handler->display->display_options['fields']['field_date_1']['alter']['word_boundary'] = 1;
+    $handler->display->display_options['fields']['field_date_1']['alter']['ellipsis'] = 1;
+    $handler->display->display_options['fields']['field_date_1']['alter']['strip_tags'] = 0;
+    $handler->display->display_options['fields']['field_date_1']['alter']['trim'] = 0;
+    $handler->display->display_options['fields']['field_date_1']['alter']['html'] = 0;
+    $handler->display->display_options['fields']['field_date_1']['element_label_colon'] = 0;
+    $handler->display->display_options['fields']['field_date_1']['element_default_classes'] = 1;
+    $handler->display->display_options['fields']['field_date_1']['hide_empty'] = 0;
+    $handler->display->display_options['fields']['field_date_1']['empty_zero'] = 0;
+    $handler->display->display_options['fields']['field_date_1']['hide_alter_empty'] = 0;
+    $handler->display->display_options['fields']['field_date_1']['settings'] = array(
+        'format_type' => 'short',
+        'fromto' => 'value2',
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_to' => '',
+        'show_repeat_rule' => 'show',
+    );
+    $handler->display->display_options['fields']['field_date_1']['field_api_classes'] = 0;
     /* Field: Content: Room */
     $handler->display->display_options['fields']['field_room']['id'] = 'field_room';
     $handler->display->display_options['fields']['field_room']['table'] = 'field_data_field_room';
@@ -565,58 +535,6 @@ function indico_feeds_views_default_views() {
     $handler->display->display_options['fields']['field_type']['empty_zero'] = 0;
     $handler->display->display_options['fields']['field_type']['hide_alter_empty'] = 0;
     $handler->display->display_options['fields']['field_type']['field_api_classes'] = 0;
-    /* Sort criterion: Content: Start date (field_start_date) */
-    $handler->display->display_options['sorts']['field_start_date_value']['id'] = 'field_start_date_value';
-    $handler->display->display_options['sorts']['field_start_date_value']['table'] = 'field_data_field_start_date';
-    $handler->display->display_options['sorts']['field_start_date_value']['field'] = 'field_start_date_value';
-    $handler->display->display_options['sorts']['field_start_date_value']['order'] = 'DESC';
-    $handler->display->display_options['sorts']['field_start_date_value']['exposed'] = TRUE;
-    $handler->display->display_options['sorts']['field_start_date_value']['expose']['label'] = 'Start date';
-    /* Sort criterion: Content: Start time (field_start_time) */
-    $handler->display->display_options['sorts']['field_start_time_value']['id'] = 'field_start_time_value';
-    $handler->display->display_options['sorts']['field_start_time_value']['table'] = 'field_data_field_start_time';
-    $handler->display->display_options['sorts']['field_start_time_value']['field'] = 'field_start_time_value';
-    $handler->display->display_options['sorts']['field_start_time_value']['order'] = 'DESC';
-    $handler->display->display_options['sorts']['field_start_time_value']['exposed'] = TRUE;
-    $handler->display->display_options['sorts']['field_start_time_value']['expose']['label'] = 'Start time';
-    /* Sort criterion: Content: End date (field_end_date) */
-    $handler->display->display_options['sorts']['field_end_date_value']['id'] = 'field_end_date_value';
-    $handler->display->display_options['sorts']['field_end_date_value']['table'] = 'field_data_field_end_date';
-    $handler->display->display_options['sorts']['field_end_date_value']['field'] = 'field_end_date_value';
-    $handler->display->display_options['sorts']['field_end_date_value']['order'] = 'DESC';
-    $handler->display->display_options['sorts']['field_end_date_value']['exposed'] = TRUE;
-    $handler->display->display_options['sorts']['field_end_date_value']['expose']['label'] = 'End date';
-    /* Sort criterion: Content: End time (field_end_time) */
-    $handler->display->display_options['sorts']['field_end_time_value']['id'] = 'field_end_time_value';
-    $handler->display->display_options['sorts']['field_end_time_value']['table'] = 'field_data_field_end_time';
-    $handler->display->display_options['sorts']['field_end_time_value']['field'] = 'field_end_time_value';
-    $handler->display->display_options['sorts']['field_end_time_value']['order'] = 'DESC';
-    $handler->display->display_options['sorts']['field_end_time_value']['exposed'] = TRUE;
-    $handler->display->display_options['sorts']['field_end_time_value']['expose']['label'] = 'End time';
-    /* Sort criterion: Content: Title */
-    $handler->display->display_options['sorts']['title']['id'] = 'title';
-    $handler->display->display_options['sorts']['title']['table'] = 'node';
-    $handler->display->display_options['sorts']['title']['field'] = 'title';
-    $handler->display->display_options['sorts']['title']['exposed'] = TRUE;
-    $handler->display->display_options['sorts']['title']['expose']['label'] = 'Title';
-    /* Sort criterion: Content: Room (field_room) */
-    $handler->display->display_options['sorts']['field_room_value']['id'] = 'field_room_value';
-    $handler->display->display_options['sorts']['field_room_value']['table'] = 'field_data_field_room';
-    $handler->display->display_options['sorts']['field_room_value']['field'] = 'field_room_value';
-    $handler->display->display_options['sorts']['field_room_value']['exposed'] = TRUE;
-    $handler->display->display_options['sorts']['field_room_value']['expose']['label'] = 'Room';
-    /* Sort criterion: Content: Type (field_type) */
-    $handler->display->display_options['sorts']['field_type_value']['id'] = 'field_type_value';
-    $handler->display->display_options['sorts']['field_type_value']['table'] = 'field_data_field_type';
-    $handler->display->display_options['sorts']['field_type_value']['field'] = 'field_type_value';
-    $handler->display->display_options['sorts']['field_type_value']['exposed'] = TRUE;
-    $handler->display->display_options['sorts']['field_type_value']['expose']['label'] = 'Type';
-    /* Sort criterion: Content: Category (field_category) */
-    $handler->display->display_options['sorts']['field_category_value']['id'] = 'field_category_value';
-    $handler->display->display_options['sorts']['field_category_value']['table'] = 'field_data_field_category';
-    $handler->display->display_options['sorts']['field_category_value']['field'] = 'field_category_value';
-    $handler->display->display_options['sorts']['field_category_value']['exposed'] = TRUE;
-    $handler->display->display_options['sorts']['field_category_value']['expose']['label'] = 'Category';
     /* Contextual filter: Content: Nid */
     $handler->display->display_options['arguments']['nid']['id'] = 'nid';
     $handler->display->display_options['arguments']['nid']['table'] = 'node';

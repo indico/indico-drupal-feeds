@@ -45,48 +45,38 @@ function indico_feeds_feeds_importer_default() {
                         'unique' => FALSE,
                     ),
                     4 => array(
-                        'source' => 'startDate',
-                        'target' => 'field_start_date',
-                        'unique' => FALSE,
-                    ),
-                    5 => array(
-                        'source' => 'endDate',
-                        'target' => 'field_end_date',
-                        'unique' => FALSE,
-                    ),
-                    6 => array(
                         'source' => 'link',
                         'target' => 'field_indico_link',
                         'unique' => FALSE,
                     ),
-                    7 => array(
+                    5 => array(
                         'source' => 'description',
                         'target' => 'body',
                         'unique' => FALSE,
                     ),
-                    8 => array(
-                        'source' => 'startTime',
-                        'target' => 'field_start_time',
-                        'unique' => FALSE,
-                    ),
-                    9 => array(
-                        'source' => 'endTime',
-                        'target' => 'field_end_time',
-                        'unique' => FALSE,
-                    ),
-                    10 => array(
+                    6 => array(
                         'source' => 'type',
                         'target' => 'field_type',
                         'unique' => FALSE,
                     ),
-                    11 => array(
+                    7 => array(
                         'source' => 'timezone',
                         'target' => 'field_timezone',
                         'unique' => FALSE,
                     ),
-                    12 => array(
+                    8 => array(
                         'source' => 'category',
                         'target' => 'field_category',
+                        'unique' => FALSE,
+                    ),
+                    9 => array(
+                        'source' => 'startDateTime',
+                        'target' => 'field_date:start',
+                        'unique' => FALSE,
+                    ),
+                    10 => array(
+                        'source' => 'endDateTime',
+                        'target' => 'field_date:end',
                         'unique' => FALSE,
                     ),
                 ),

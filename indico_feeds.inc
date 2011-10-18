@@ -1,5 +1,5 @@
 <?php
-define('INDICO_URL', 'https://indico.cern.ch');
+define('INDICO_URL', 'https://pcituds07.cern.ch/indico');
 
 class IndicoFetcherResult extends FeedsFetcherResult {
     protected $url;
@@ -234,21 +234,13 @@ class IndicoParser extends FeedsParser {
                 'name' => t('Description'),
                 'description' => t('Description of the event'),
             ),
-            'startDate' => array(
-                'name' => t('Start date'),
-                'description' => t('Start date of the event'),
+            'startDateTime' => array(
+                'name' => t('Start date/time'),
+                'description' => t('Start date/time of the event (UTC)'),
             ),
-            'startTime' => array(
-                'name' => t('Start time'),
-                'description' => t('Start time of the event (UTC)'),
-            ),
-            'endDate' => array(
-                'name' => t('End date'),
-                'description' => t('End date of the event'),
-            ),
-            'endTime' => array(
-                'name' => t('End time'),
-                'description' => t('End time of the event (UTC)'),
+            'endDateTime' => array(
+                'name' => t('End date/time'),
+                'description' => t('End date/time of the event (UTC)'),
             ),
             'timezone' => array(
                 'name' => t('Timezone'),
@@ -282,10 +274,8 @@ class IndicoParser extends FeedsParser {
                 'type' => $event->type,
                 'title' => $event->title,
                 'description' => $event->description,
-                'startDate' => $event->startDate->date,
-                'startTime' => substr($event->startDate->time, 0, 5),
-                'endDate' => $event->endDate->date,
-                'endTime' => substr($event->endDate->time, 0, 5),
+                'startDateTime' => new DateObject($event->startDate->date.' '.$event->startDate->time, $event->startDate->tz, DATE_FORMAT_DATETIME),
+                'endDateTime' => new DateObject($event->endDate->date.' '.$event->endDate->time, $event->endDate->tz, DATE_FORMAT_DATETIME),
                 'timezone' => $event->timezone,
                 'location' => $event->location,
                 'room' => $event->room,
