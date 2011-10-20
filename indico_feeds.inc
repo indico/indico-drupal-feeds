@@ -1,5 +1,5 @@
 <?php
-define('INDICO_URL', 'https://pcituds07.cern.ch/indico');
+define('INDICO_URL', 'https://indico.cern.ch');
 
 class IndicoFetcherResult extends FeedsFetcherResult {
     protected $url;
