@@ -1,6 +1,7 @@
 <?php
 function indico_feeds_uninstall() {
     drupal_load('module', 'indico_feeds');
+
     // Delete all indico importers
     foreach(feeds_importer_load_all(true) as $importer) {
         if(_indico_feeds_is_indico_importer($importer)) {
@@ -8,4 +9,23 @@ function indico_feeds_uninstall() {
         }
     }
     feeds_cache_clear();
+
+    // Delete all nodes created by us
+    $res = db_select('node')
+        ->fields('node', array('nid'))
+        ->condition('type', array('indico_feed', 'indico_event'))
+        ->execute()
+        ->fetchAll();
+    $nids = array();
+    foreach($res as $row) {
+        $nids[] = $row->nid;
+    }
+    node_delete_multiple($nids);
+
+    // Delete out content types
+    foreach(array('indico_event', 'indico_feed') as $type) {
+        node_type_delete($type);
+        variable_del('node_preview_' . $type);
+    }
+    node_types_rebuild();
 }
