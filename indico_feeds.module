@@ -10,6 +10,9 @@ function indico_feeds_enable() {
     variable_set('default_feeds_importer', $disabled);
     feeds_cache_clear();
 
+    // Ensure our fields are up to date
+    field_features_rebuild('indico_feeds');
+
     // Clear all caches and tell users what to do next
     drupal_flush_all_caches();
     drupal_set_message(t('To use the <em>Indico Feeds</em> module, first go to the <a href="@url">Indico Feed Administration</a> to set some general options.', array('@url' => url('admin/structure/feeds/edit/indico/settings/IndicoFetcher'))));
