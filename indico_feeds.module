@@ -2,12 +2,35 @@
 include_once('indico_feeds.features.inc');
 
 function indico_feeds_enable() {
+    // Enable all indico importers (in case some already exist).
+    $disabled = array();
+    foreach(feeds_importer_load_all(true) as $importer) {
+        $disabled[$importer->id] = _indico_feeds_is_indico_importer($importer) ? false : $importer->disabled;
+    }
+    variable_set('default_feeds_importer', $disabled);
+    feeds_cache_clear();
+
+    // Clear all caches and tell users what to do next
     drupal_flush_all_caches();
     drupal_set_message(t('To use the <em>Indico Feeds</em> module, first go to the <a href="@url">Indico Feed Administration</a> to set some general options.', array('@url' => url('admin/structure/feeds/edit/indico/settings/IndicoFetcher'))));
 }
 
 function indico_feeds_disable() {
+    // Disable all indico importers
+    $disabled = array();
+    foreach(feeds_importer_load_all(true) as $importer) {
+        $disabled[$importer->id] = _indico_feeds_is_indico_importer($importer) ? true : $importer->disabled;
+    }
+    variable_set('default_feeds_importer', $disabled);
+    feeds_cache_clear();
+
+    // Clear all caches just to be safe
     drupal_flush_all_caches();
+}
+
+function _indico_feeds_is_indico_importer($importer) {
+    $cfg = $importer->getConfig();
+    return ($cfg['fetcher']['plugin_key'] == 'IndicoFetcher' || $cfg['parser']['plugin_key'] == 'IndicoParser');
 }
 
 function indico_feeds_help($path, $arg) {
