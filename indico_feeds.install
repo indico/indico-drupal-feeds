@@ -1,4 +1,9 @@
 <?php
+function indico_feeds_install() {
+    // Ensure our fields are up to date
+    field_features_rebuild('indico_feeds');
+}
+
 function indico_feeds_uninstall() {
     drupal_load('module', 'indico_feeds');
 
