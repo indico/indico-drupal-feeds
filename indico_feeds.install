@@ -1,0 +1,11 @@
+<?php
+function indico_feeds_uninstall() {
+    drupal_load('module', 'indico_feeds');
+    // Delete all indico importers
+    foreach(feeds_importer_load_all(true) as $importer) {
+        if(_indico_feeds_is_indico_importer($importer)) {
+            $importer->delete();
+        }
+    }
+    feeds_cache_clear();
+}
