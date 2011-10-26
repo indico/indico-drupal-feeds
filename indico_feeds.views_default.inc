@@ -93,8 +93,6 @@ function indico_feeds_views_default_views() {
         'indico_event' => 'indico_event',
     );
 
-    /* Display: Block */
-    $handler = $view->new_display('block', 'Block', 'block');
     $export['indico_events_block'] = $view;
 
     $view = new view;
@@ -294,8 +292,6 @@ function indico_feeds_views_default_views() {
         'indico_event' => 'indico_event',
     );
 
-    /* Display: Block */
-    $handler = $view->new_display('block', 'Block', 'block');
     $export['indico_events_block_with_details'] = $view;
 
     $view = new view;

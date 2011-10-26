@@ -33,6 +33,109 @@ function _indico_feeds_is_indico_importer($importer) {
     return ($cfg['fetcher']['plugin_key'] == 'IndicoFetcher' || $cfg['parser']['plugin_key'] == 'IndicoParser');
 }
 
+function indico_feeds_node_insert($node) {
+    if(!($id = feeds_get_importer_id($node->type)) || !($importer = feeds_importer($id)) || !_indico_feeds_is_indico_importer($importer)) {
+        return;
+    }
+
+    _indico_feeds_create_blocks($node, $importer);
+}
+
+function _indico_feeds_create_blocks($node, $importer, $new = true) {
+    $createdView = false;
+    foreach(array('indico_events_block', 'indico_events_block_with_details') as $view_name) {
+        $view = views_get_view($view_name, true);
+        if(isset($view->display['block_feed_' . $node->nid])) {
+            continue;
+        }
+        $handler = $view->new_display('block', 'Feed block: ' . $node->title, 'block_feed_' . $node->nid);
+        $handler->display->display_options['defaults']['title'] = false;
+        $handler->display->display_options['title'] = $node->title;
+        $handler->display->display_options['defaults']['filters'] = false;
+        $handler->display->display_options['filters']['type']['id'] = 'type';
+        $handler->display->display_options['filters']['type']['table'] = 'node';
+        $handler->display->display_options['filters']['type']['field'] = 'type';
+        $handler->display->display_options['filters']['type']['value'] = array(
+            'indico_event' => 'indico_event',
+        );
+        $handler->display->display_options['filters']['feed_nid']['id'] = 'feed_nid';
+        $handler->display->display_options['filters']['feed_nid']['table'] = 'feeds_item';
+        $handler->display->display_options['filters']['feed_nid']['field'] = 'feed_nid';
+        $handler->display->display_options['filters']['feed_nid']['value']['value'] = $node->nid;
+        $view->save();
+        $createdView = true;
+    }
+    if(!$createdView) {
+        return;
+    }
+    if($new) {
+        drupal_set_message(t('Blocks displaying events from your feed have been automatically created. You may enable them on the <em>Structure &raquo; Blocks</em> page.'));
+        // Clear various caches
+        menu_rebuild();
+        cache_clear_all('*', 'cache_views');
+        cache_clear_all();
+        ctools_include('object-cache');
+        ctools_object_cache_clear('view', $view->name);
+    }
+    else {
+        drupal_set_message(t('A missing block related to this feed has been automatically recreated.'));
+    }
+}
+
+function indico_feeds_node_update($node) {
+    if(!($id = feeds_get_importer_id($node->type)) || !($importer = feeds_importer($id)) || !_indico_feeds_is_indico_importer($importer)) {
+        return;
+    }
+
+    $missing = false;
+    foreach(array('indico_events_block', 'indico_events_block_with_details') as $view_name) {
+        $view = views_get_view($view_name, true);
+        if(isset($view->display['block_feed_' . $node->nid])) {
+            $display = $view->display['block_feed_' . $node->nid];
+            $display->display_title = 'Feed block: ' . $node->title;
+            $display->display_options['title'] = $node->title;
+        }
+        else {
+            // Create block if it was missing for some reason
+            $missing = true;
+        }
+        $view->save();
+    }
+    if($missing) {
+        _indico_feeds_create_blocks($node, $importer, false);
+    }
+    // Clear various caches
+    menu_rebuild();
+    cache_clear_all('*', 'cache_views');
+    cache_clear_all();
+    ctools_include('object-cache');
+    ctools_object_cache_clear('view', $view->name);
+}
+
+function indico_feeds_node_delete($node) {
+    if(!($id = feeds_get_importer_id($node->type)) || !($importer = feeds_importer($id)) || !_indico_feeds_is_indico_importer($importer)) {
+        return;
+    }
+
+    $deleted = false;
+    foreach(array('indico_events_block', 'indico_events_block_with_details') as $view_name) {
+        $view = views_get_view($view_name, true);
+        if(isset($view->display['block_feed_' . $node->nid])) {
+            unset($view->display['block_feed_' . $node->nid]);
+            $deleted = true;
+            $view->save();
+        }
+    }
+    if($deleted) {
+        // Clear various caches
+        menu_rebuild();
+        cache_clear_all('*', 'cache_views');
+        cache_clear_all();
+        ctools_include('object-cache');
+        ctools_object_cache_clear('view', $view->name);
+    }
+}
+
 function indico_feeds_help($path, $arg) {
     switch ($path) {
     case 'admin/help#indico_feeds':
