@@ -113,6 +113,7 @@ function indico_feeds_node_update($node) {
 }
 
 function indico_feeds_node_delete($node) {
+    return; // currently DISABLED - see http://drupal.org/node/1065942
     if(!($id = feeds_get_importer_id($node->type)) || !($importer = feeds_importer($id)) || !_indico_feeds_is_indico_importer($importer)) {
         return;
     }
