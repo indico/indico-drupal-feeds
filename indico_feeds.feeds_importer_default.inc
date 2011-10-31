@@ -86,7 +86,7 @@ function indico_feeds_feeds_importer_default() {
         ),
         'content_type' => 'indico_feed',
         'update' => 0,
-        'import_period' => '3600',
+        'import_period' => '21600',
         'expire_period' => 3600,
         'import_on_create' => 1,
         'process_in_background' => 0,
