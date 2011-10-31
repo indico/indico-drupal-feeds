@@ -26,7 +26,7 @@ function indico_feeds_node_info() {
         'indico_feed' => array(
             'name' => t('Indico Feed'),
             'base' => 'node_content',
-            'description' => t('This content type resembles Feeds importers that import indico events. Please note that you <strong>must</strong> customize the <em>Views</em> when creating more than one importer unless you want the blocks to display events from all indico feeds.'),
+            'description' => t('This content type resembles Feeds importers that import indico events. For every importer you create, a block is created, too.'),
             'has_title' => '1',
             'title_label' => t('Title'),
             'help' => '',
