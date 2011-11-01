@@ -193,3 +193,47 @@ function indico_feeds_date_formats() {
         ),
     );
 }
+
+// rewrites indico events urls from node/<nid> to node/<nid>/indico-events
+function indico_feeds_url_outbound_alter(&$path, &$options, $original_path) {
+    if(preg_match('#^node/([0-9]*)$#', $path, $matches)) {
+        $nodefeed = node_load($matches[1]);
+        if($nodefeed->type == 'indico_feed') {
+            $path .= '/indico-events';
+        }
+    }
+}
+
+// hides 'View' tabs
+function indico_feeds_preprocess_page(&$vars, $hook) {
+    // these conditions could need some review (seem to work now -Adrian)
+    if ((isset($vars['node']) && ($vars['node']->type == 'indico_feed')) || (isset($vars['tabs']['#primary']) && is_array($vars['tabs']['#primary']) && isset($vars['tabs']['#primary'][1]['#link']['path']) && ($vars['tabs']['#primary'][1]['#link']['path'] == 'node/%/indico-events'))) {
+        _indico_feeds_removetab('View', $vars);
+    }
+}
+
+// Remove undesired local task tabs.
+function _indico_feeds_removetab($label, &$vars) {
+    // Remove from primary tabs
+    $i = 0;
+    if(is_array($vars['tabs']['#primary'])) {
+        foreach($vars['tabs']['#primary'] as $primary_tab) {
+            if($primary_tab['#link']['title'] == $label) {
+                unset($vars['tabs']['#primary'][$i]);
+            }
+            $i++;
+        }
+    }
+    // Remove from secondary tabs
+    $i = 0;
+    if(is_array($vars['tabs']['#secondary'])) {
+        foreach($vars['tabs']['#secondary'] as $secondary_tab) {
+            if($secondary_tab['#link']['title'] == $label) {
+                unset($vars['tabs']['#secondary'][$i]);
+            }
+            $i++;
+        }
+    }
+}
+
+
