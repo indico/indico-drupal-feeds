@@ -222,6 +222,9 @@ class IndicoFetcher extends FeedsFetcher {
     public function configFormSubmit(&$values) {
         parent::configFormSubmit($values);
         drupal_set_message(t('To import data from indico you might now want to <a href="@url">create a new <em>Indico Feed</em> content node</a>.', array('@url' => url('node/add/indico-feed'))));
+        if($values['secret_key']) {
+            drupal_set_message(t('By providing a secret key, protected events may be imported. <strong>You are required to ensure that only authorized users are able to access information about these events!</strong>'), 'warning');
+        }
     }
 }
 
