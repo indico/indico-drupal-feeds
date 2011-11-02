@@ -119,7 +119,7 @@ class IndicoFetcher extends FeedsFetcher {
             'date_from' => 'today',
             'date_to' => 'today',
             'room' => '',
-            'only_public' => false,
+            'only_public' => true,
         );
     }
 
