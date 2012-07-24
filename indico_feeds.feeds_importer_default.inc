@@ -84,6 +84,11 @@ function indico_feeds_feeds_importer_default() {
                         'target' => 'field_category_id',
                         'unique' => FALSE,
                     ),
+                    12 => array(
+                        'source' => 'roomMapURL',
+                        'target' => 'field_room_map_url',
+                        'unique' => FALSE,
+                    ),
                 ),
                 'update_existing' => '2',
                 'input_format' => 'full_html',
