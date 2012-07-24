@@ -271,6 +271,10 @@ class IndicoParser extends FeedsParser {
                 'name' => t('Category'),
                 'description' => t('Indico category of the event'),
             ),
+            'categoryId' => array(
+                'name' => t('Category ID'),
+                'description' => t('Indico category ID of the event'),
+            ),
             'link' => array(
                 'name' => t('Indico link'),
                 'description' => t('Indico link of the event'),
@@ -293,6 +297,7 @@ class IndicoParser extends FeedsParser {
                 'location' => $event->location,
                 'room' => $event->room,
                 'category' => $event->category,
+                'categoryId' => $event->categoryId,
                 'link' => $event->url,
             );
             $result->items[] = $item;

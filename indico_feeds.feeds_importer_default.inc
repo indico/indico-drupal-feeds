@@ -79,6 +79,11 @@ function indico_feeds_feeds_importer_default() {
                         'target' => 'field_date:end',
                         'unique' => FALSE,
                     ),
+                    11 => array(
+                        'source' => 'categoryId',
+                        'target' => 'field_category_id',
+                        'unique' => FALSE,
+                    ),
                 ),
                 'update_existing' => '1',
                 'input_format' => 'full_html',
