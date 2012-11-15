@@ -1,4 +1,4 @@
-configure = "admin/structure/feeds/edit/indico"
+configure = "admin/structure/feeds/indico"
 core = "7.x"
 dependencies[] = "date"
 dependencies[] = "features"
