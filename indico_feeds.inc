@@ -293,7 +293,7 @@ class IndicoParser extends FeedsParser {
             $item = array(
                 'id' => $event->id,
                 'type' => $event->type,
-                'title' => $event->title,
+                'title' => strip_tags($event->title),
                 'description' => $event->description,
                 'startDateTime' => new DateObject($event->startDate->date.' '.$event->startDate->time, $event->startDate->tz, DATE_FORMAT_DATETIME),
                 'endDateTime' => new DateObject($event->endDate->date.' '.$event->endDate->time, $event->endDate->tz, DATE_FORMAT_DATETIME),
