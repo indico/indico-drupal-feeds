@@ -92,6 +92,7 @@ function indico_feeds_feeds_importer_default() {
                 ),
                 'update_existing' => '2',
                 'input_format' => 'full_html',
+                'bundle' => 'indico_event',
             ),
         ),
         'content_type' => 'indico_feed',
