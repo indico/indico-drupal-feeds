@@ -250,11 +250,11 @@ class IndicoParser extends FeedsParser {
             ),
             'startDateTime' => array(
                 'name' => t('Start date/time'),
-                'description' => t('Start date/time of the event (UTC)'),
+                'description' => t('Start date/time of the event'),
             ),
             'endDateTime' => array(
                 'name' => t('End date/time'),
-                'description' => t('End date/time of the event (UTC)'),
+                'description' => t('End date/time of the event'),
             ),
             'timezone' => array(
                 'name' => t('Timezone'),

@@ -307,7 +307,7 @@ function indico_feeds_field_default_fields() {
         'field_instance' => array(
             'bundle' => 'indico_event',
             'deleted' => '0',
-            'description' => 'This field contains the UTC date/time of the event.',
+            'description' => 'This field contains the date/time of the event.',
             'display' => array(
                 'default' => array(
                     'label' => 'inline',
