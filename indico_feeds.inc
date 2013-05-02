@@ -250,11 +250,11 @@ class IndicoParser extends FeedsParser {
             ),
             'startDateTime' => array(
                 'name' => t('Start date/time'),
-                'description' => t('Start date/time of the event (UTC)'),
+                'description' => t('Start date/time of the event'),
             ),
             'endDateTime' => array(
                 'name' => t('End date/time'),
-                'description' => t('End date/time of the event (UTC)'),
+                'description' => t('End date/time of the event'),
             ),
             'timezone' => array(
                 'name' => t('Timezone'),
@@ -291,13 +291,17 @@ class IndicoParser extends FeedsParser {
         $data = json_decode($fetcher_result->getRaw());
         $result = new FeedsParserResult();
         foreach($data->results as $event) {
+            $startDT = new DateObject($event->startDate->date.' '.$event->startDate->time, $event->startDate->tz, DATE_FORMAT_DATETIME);
+            $startDT->setTimezone(new DateTimeZone('UTC'));
+            $endDT = new DateObject($event->endDate->date.' '.$event->endDate->time, $event->endDate->tz, DATE_FORMAT_DATETIME);
+            $endDT->setTimezone(new DateTimeZone('UTC'));
             $item = array(
                 'id' => $event->id,
                 'type' => $event->type,
                 'title' => strip_tags($event->title),
                 'description' => $event->description,
-                'startDateTime' => new DateObject($event->startDate->date.' '.$event->startDate->time, $event->startDate->tz, DATE_FORMAT_DATETIME),
-                'endDateTime' => new DateObject($event->endDate->date.' '.$event->endDate->time, $event->endDate->tz, DATE_FORMAT_DATETIME),
+                'startDateTime' => $startDT,
+                'endDateTime' => $endDT,
                 'timezone' => $event->timezone,
                 'location' => $event->location,
                 'room' => $event->room,
