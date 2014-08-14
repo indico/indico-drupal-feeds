@@ -143,7 +143,7 @@ function indico_feeds_help($path, $arg) {
         $output = '';
         $output .= '<h3>' . t('Indico Feeds') . '</h3>';
         $output .= '<p>' . t('This module allows you to import events from Indico. To use it, create a key pair in Indico via <em>My Profile / HTTP API</em>. Then go to the <a href="@fetcher">Indico Fetcher settings</a> and enter your key pair.', array('@fetcher' => url('admin/structure/feeds/edit/indico/settings/IndicoFetcher'))) . '</p>';
-        $output .= '<p>' . t('To actually import data from indico, <a href="@feed">create a new <em>Indico Feed</em> content node</a> and enter the requested infomation. To find out the ID of a category, open it in Indico and copy the value of the <em>categId</em> parameter from the URL.', array('@feed' => url('node/add/indico-feed'))) . '</p>';
+        $output .= '<p>' . t('To actually import data from indico, <a href="@feed">create a new <em>Indico Feed</em> content node</a> and enter the requested infomation. To find out the ID of a category, open it in Indico and copy the numeric value next to <em>/category/</em> from the URL.', array('@feed' => url('node/add/indico-feed'))) . '</p>';
         return $output;
     }
 }
