@@ -129,7 +129,7 @@ class IndicoFetcher extends FeedsFetcher {
             '#type' => 'textfield',
             '#title' => t('Categories'),
             '#default_value' => isset($source_config['categories']) ? $source_config['categories'] : '',
-            '#description' => t('Category ID(s) to retrieve events from. Separate multiple IDs with commas. To find out the ID of a category, go to the category in <a href="http://indico.cern.ch">Indico</a> and copy the value next to <em>categId=</em> from the URL.'),
+            '#description' => t('Category ID(s) to retrieve events from. Separate multiple IDs with commas. To find out the ID of a category, go to the category in <a href="http://indico.cern.ch">Indico</a> and copy the numeric value next to <em>/category/</em> from the URL.'),
             '#required' => false,
             '#maxlength' => 1024,
         );
