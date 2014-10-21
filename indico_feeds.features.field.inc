@@ -299,7 +299,7 @@ function indico_feeds_field_default_fields() {
                 'repeat' => 0,
                 'timezone_db' => 'UTC',
                 'todate' => 'required',
-                'tz_handling' => 'none',
+                'tz_handling' => 'site',
             ),
             'translatable' => '0',
             'type' => 'datetime',
