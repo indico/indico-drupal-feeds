@@ -284,6 +284,10 @@ class IndicoParser extends FeedsParser {
                 'name' => t('Indico link'),
                 'description' => t('Indico link of the event'),
             ),
+            'eventChair' => array(
+                'name' => t('Event Chairs'),
+                'description' => t('Event Chairs from the event'),
+            ),
         );
     }
 
@@ -295,6 +299,19 @@ class IndicoParser extends FeedsParser {
             $startDT->setTimezone(new DateTimeZone('UTC'));
             $endDT = new DateObject($event->endDate->date.' '.$event->endDate->time, $event->endDate->tz, DATE_FORMAT_DATETIME);
             $endDT->setTimezone(new DateTimeZone('UTC'));
+            $chairs = "";
+            foreach ($event->chairs as $subarr) {
+                $tmparr = explode(",",$subarr->fullName);
+                $titles = "/Mr.|Ms.|Mrs.|Dr.|Prof./";
+                if (preg_match($titles, $tmparr[0], $matches)) {
+                        $tmparr[0] = preg_replace($titles,"",$tmparr[0]);
+                        $tmparr[1] = $matches[0]." ".$tmparr[1];
+                }
+                if (!isset($chairs))
+                        $chairs = $tmparr[1]." ".$tmparr[0];
+                else
+                        $chairs = $chairs.", ". $tmparr[1]." ".$tmparr[0];
+            }
             $item = array(
                 'id' => $event->id,
                 'type' => $event->type,
@@ -309,6 +326,7 @@ class IndicoParser extends FeedsParser {
                 'categoryId' => $event->categoryId,
                 'roomMapURL' => $event->roomMapURL,
                 'link' => $event->url,
+                'eventChair' => $chairs,
             );
             $result->items[] = $item;
         }
