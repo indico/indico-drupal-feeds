@@ -292,9 +292,7 @@ class IndicoParser extends FeedsParser {
         $result = new FeedsParserResult();
         foreach($data->results as $event) {
             $startDT = new DateObject($event->startDate->date.' '.$event->startDate->time, $event->startDate->tz, DATE_FORMAT_DATETIME);
-            $startDT->setTimezone(new DateTimeZone('UTC'));
             $endDT = new DateObject($event->endDate->date.' '.$event->endDate->time, $event->endDate->tz, DATE_FORMAT_DATETIME);
-            $endDT->setTimezone(new DateTimeZone('UTC'));
             $item = array(
                 'id' => $event->id,
                 'type' => $event->type,
