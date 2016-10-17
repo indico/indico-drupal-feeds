@@ -53,6 +53,31 @@ function indico_feeds_views_default_views() {
     $handler->display->display_options['fields']['field_indico_link']['empty_zero'] = 0;
     $handler->display->display_options['fields']['field_indico_link']['hide_alter_empty'] = 0;
     $handler->display->display_options['fields']['field_indico_link']['field_api_classes'] = 0;
+     /* Field: Content: Indico iCal */
+    $handler->display->display_options['fields']['field_indico_ical']['id'] = 'field_indico_ical';
+    $handler->display->display_options['fields']['field_indico_ical']['table'] = 'field_data_field_indico_ical';
+    $handler->display->display_options['fields']['field_indico_ical']['field'] = 'field_indico_ical';
+    $handler->display->display_options['fields']['field_indico_ical']['label'] = '';
+    $handler->display->display_options['fields']['field_indico_ical']['exclude'] = TRUE;
+    $handler->display->display_options['fields']['field_indico_ical']['alter']['alter_text'] = 0;
+    $handler->display->display_options['fields']['field_indico_ical']['alter']['make_link'] = 1;
+    $handler->display->display_options['fields']['field_indico_ical']['alter']['path'] = '[field_indico_ical]';
+    $handler->display->display_options['fields']['field_indico_ical']['alter']['absolute'] = 0;
+    $handler->display->display_options['fields']['field_indico_ical']['alter']['external'] = 0;
+    $handler->display->display_options['fields']['field_indico_ical']['alter']['replace_spaces'] = 0;
+    $handler->display->display_options['fields']['field_indico_ical']['alter']['trim_whitespace'] = 0;
+    $handler->display->display_options['fields']['field_indico_ical']['alter']['nl2br'] = 0;
+    $handler->display->display_options['fields']['field_indico_ical']['alter']['word_boundary'] = 1;
+    $handler->display->display_options['fields']['field_indico_ical']['alter']['ellipsis'] = 1;
+    $handler->display->display_options['fields']['field_indico_ical']['alter']['strip_tags'] = 0;
+    $handler->display->display_options['fields']['field_indico_ical']['alter']['trim'] = 0;
+    $handler->display->display_options['fields']['field_indico_ical']['alter']['html'] = 0;
+    $handler->display->display_options['fields']['field_indico_ical']['element_label_colon'] = FALSE;
+    $handler->display->display_options['fields']['field_indico_ical']['element_default_classes'] = 1;
+    $handler->display->display_options['fields']['field_indico_ical']['hide_empty'] = 0;
+    $handler->display->display_options['fields']['field_indico_ical']['empty_zero'] = 0;
+    $handler->display->display_options['fields']['field_indico_ical']['hide_alter_empty'] = 0;
+    $handler->display->display_options['fields']['field_indico_ical']['field_api_classes'] = 0;
     /* Field: Content: Title */
     $handler->display->display_options['fields']['title']['id'] = 'title';
     $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -153,6 +178,30 @@ function indico_feeds_views_default_views() {
     $handler->display->display_options['fields']['field_indico_link']['empty_zero'] = 0;
     $handler->display->display_options['fields']['field_indico_link']['hide_alter_empty'] = 0;
     $handler->display->display_options['fields']['field_indico_link']['field_api_classes'] = 0;
+    /* Field: Content: Indico iCal */
+    $handler->display->display_options['fields']['field_indico_ical']['id'] = 'field_indico_ical';
+    $handler->display->display_options['fields']['field_indico_ical']['table'] = 'field_data_field_indico_ical';
+    $handler->display->display_options['fields']['field_indico_ical']['field'] = 'field_indico_ical';
+    $handler->display->display_options['fields']['field_indico_ical']['label'] = '';
+    $handler->display->display_options['fields']['field_indico_ical']['exclude'] = TRUE;
+    $handler->display->display_options['fields']['field_indico_ical']['alter']['alter_text'] = 0;
+    $handler->display->display_options['fields']['field_indico_ical']['alter']['make_link'] = 0;
+    $handler->display->display_options['fields']['field_indico_ical']['alter']['absolute'] = 0;
+    $handler->display->display_options['fields']['field_indico_ical']['alter']['external'] = 0;
+    $handler->display->display_options['fields']['field_indico_ical']['alter']['replace_spaces'] = 0;
+    $handler->display->display_options['fields']['field_indico_ical']['alter']['trim_whitespace'] = 0;
+    $handler->display->display_options['fields']['field_indico_ical']['alter']['nl2br'] = 0;
+    $handler->display->display_options['fields']['field_indico_ical']['alter']['word_boundary'] = 1;
+    $handler->display->display_options['fields']['field_indico_ical']['alter']['ellipsis'] = 1;
+    $handler->display->display_options['fields']['field_indico_ical']['alter']['strip_tags'] = 0;
+    $handler->display->display_options['fields']['field_indico_ical']['alter']['trim'] = 0;
+    $handler->display->display_options['fields']['field_indico_ical']['alter']['html'] = 0;
+    $handler->display->display_options['fields']['field_indico_ical']['element_label_colon'] = FALSE;
+    $handler->display->display_options['fields']['field_indico_ical']['element_default_classes'] = 1;
+    $handler->display->display_options['fields']['field_indico_ical']['hide_empty'] = 0;
+    $handler->display->display_options['fields']['field_indico_ical']['empty_zero'] = 0;
+    $handler->display->display_options['fields']['field_indico_ical']['hide_alter_empty'] = 0;
+    $handler->display->display_options['fields']['field_indico_ical']['field_api_classes'] = 0;
     /* Field: Content: Category */
     $handler->display->display_options['fields']['field_category']['id'] = 'field_category';
     $handler->display->display_options['fields']['field_category']['table'] = 'field_data_field_category';

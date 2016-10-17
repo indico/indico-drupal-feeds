@@ -157,6 +157,7 @@ class IndicoFetcher extends FeedsFetcher {
             '#description' => t("The room where the event must take place. You may use <strong>*</strong> as a wildcard."),
             '#required' => false,
         );
+    
 
         $form['only_public'] = array(
             '#type' => 'checkbox',
@@ -284,6 +285,10 @@ class IndicoParser extends FeedsParser {
                 'name' => t('Indico link'),
                 'description' => t('Indico link of the event'),
             ),
+            'iCal' => array(
+                'name' => t('iCal link'),
+                'description' => t('Indico iCal link of the event'),
+            ),
         );
     }
 
@@ -307,9 +312,17 @@ class IndicoParser extends FeedsParser {
                 'categoryId' => $event->categoryId,
                 'roomMapURL' => $event->roomMapURL,
                 'link' => $event->url,
+                'iCal' => $this->_get_ical_link($event->url),
             );
             $result->items[] = $item;
         }
         return $result;
+    }
+    
+    private function _get_ical_link($url) {
+        if (preg_match("/event\/([\d]+)\/?$/i", $url, $match)) {
+            return INDICO_URL . '/export/event/' . $match[1] . '.ics';
+        } 
+        return $url;
     }
 }

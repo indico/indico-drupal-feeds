@@ -6,6 +6,91 @@ function indico_feeds_install() {
     }
 }
 
+
+/**
+ * Add feature field: field_indico_ical to provide calendar info to indico_feeds.
+ * Please after running upgrade do:
+ *   - Clear caches and rebuild registry.
+ *   - You will need to add a mapping on your indico feed processor in case you want to use field_indico_ical.
+ *     So under admin/modules go to configure indico feeds -> Processor 
+ *     -> Mapping ->  Source:ical <=> Target:Indico iCal
+ */
+function indico_feeds_update_7200() {
+    if (!field_info_field('field_indico_ical')) {
+        watchdog('Indico feeds','update being called'); 
+        $field = array(
+            'active' => '1',
+            'cardinality' => '1',
+            'deleted' => '0',
+            'entity_types' => array(),
+            'field_name' => 'field_indico_ical',
+            'foreign keys' => array(
+                'format' => array(
+                    'columns' => array(
+                        'format' => 'format',
+                    ),
+                    'table' => 'filter_format',
+                ),
+            ),
+            'indexes' => array(
+                'format' => array(
+                    0 => 'format',
+                ),
+            ),
+            'module' => 'text',
+            'settings' => array(
+                'max_length' => '255',
+            ),
+            'translatable' => '0',
+            'type' => 'text',
+        );
+        field_create_field($field);
+
+        // Create the instance on the bundle.
+        $instance =  array(
+            'bundle' => 'indico_event',
+            'default_value' => NULL,
+            'deleted' => '0',
+            'description' => 'This field contains the link to the iCal Indico event.',
+            'display' => array(
+                'default' => array(
+                    'label' => 'inline',
+                    'module' => 'text',
+                    'settings' => array(),
+                    'type' => 'text_default',
+                    'weight' => '10',
+                ),
+                'teaser' => array(
+                    'label' => 'above',
+                    'settings' => array(),
+                    'type' => 'hidden',
+                    'weight' => 0,
+                ),
+            ),
+            'entity_type' => 'node',
+            'field_name' => 'field_indico_ical',
+            'label' => 'Indico iCal',
+            'required' => 1,
+            'settings' => array(
+                'text_processing' => '0',
+                'user_register_form' => FALSE,
+            ),
+            'widget' => array(
+                'active' => 1,
+                'module' => 'text',
+                'settings' => array(
+                    'size' => '60',
+                ),
+                'type' => 'text_textfield',
+                'weight' => '12',
+            ),
+        );
+
+        field_create_instance($instance);
+    }
+    watchdog('Indico feeds','Update was run'); 
+}
+
 function indico_feeds_uninstall() {
     drupal_load('module', 'indico_feeds');
 
