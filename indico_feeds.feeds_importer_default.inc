@@ -89,6 +89,11 @@ function indico_feeds_feeds_importer_default() {
                         'target' => 'field_room_map_url',
                         'unique' => FALSE,
                     ),
+                    13 => array(
+                        'source' => 'iCal',
+                        'target' => 'field_indico_ical',
+                        'unique' => FALSE,
+                    ),
                 ),
                 'update_existing' => '2',
                 'input_format' => 'full_html',
