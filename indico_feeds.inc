@@ -287,6 +287,9 @@ class IndicoParser extends FeedsParser {
             'eventChair' => array(
                 'name' => t('Event Chairs'),
                 'description' => t('Event Chairs from the event'),
+            'iCal' => array(
+                'name' => t('iCal link'),
+                'description' => t('Indico iCal link of the event'),
             ),
         );
     }
@@ -325,9 +328,17 @@ class IndicoParser extends FeedsParser {
                 'roomMapURL' => $event->roomMapURL,
                 'link' => $event->url,
                 'eventChair' => $chairs,
+                'iCal' => $this->_get_ical_link($event->url),
             );
             $result->items[] = $item;
         }
         return $result;
+    }
+
+    private function _get_ical_link($url) {
+        if (preg_match("/event\/([\d]+)\/?$/i", $url, $match)) {
+            return INDICO_URL . '/export/event/' . $match[1] . '.ics';
+        }
+        return $url;
     }
 }
