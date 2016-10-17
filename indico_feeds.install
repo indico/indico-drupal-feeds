@@ -11,7 +11,7 @@ function indico_feeds_install() {
  * Add feature field: field_indico_ical to provide calendar info to indico_feeds.
  * Please after running upgrade do:
  *   - Clear caches and rebuild registry.
- *   - You will need to add a mapping on your indico feed processor in case you want to use field_indico_ical.
+ *   - You may need to add a mapping on your indico feed processor in case you want to use field_indico_ical.
  *     So under admin/modules go to configure indico feeds -> Processor 
  *     -> Mapping ->  Source:ical <=> Target:Indico iCal
  */
