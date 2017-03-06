@@ -287,6 +287,7 @@ class IndicoParser extends FeedsParser {
             'eventChair' => array(
                 'name' => t('Event Chairs'),
                 'description' => t('Event Chairs from the event'),
+            ),
             'iCal' => array(
                 'name' => t('iCal link'),
                 'description' => t('Indico iCal link of the event'),
