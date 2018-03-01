@@ -93,6 +93,11 @@ function indico_feeds_update_7200() {
 
 function indico_feeds_uninstall() {
     drupal_load('module', 'indico_feeds');
+    //Explicitly load feeds module to use feeds_importer_load_all API call,
+    // only in case it was disabled
+    if(!module_exists("feeds")){
+        drupal_load('module', 'feeds');
+    }
 
     // Delete all indico importers
     foreach(feeds_importer_load_all(true) as $importer) {
